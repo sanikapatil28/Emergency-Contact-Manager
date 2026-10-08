@@ -10,7 +10,7 @@ functionality.
 
 **Project Name:** Emergency Contact Management Application
 
-**Technology Stack:** - Frontend: HTML, CSS, JavaScript - Backend:
+**Technology Stack:** - Frontend: HTML, CSS - Backend:
 Python Flask - Database: MongoDB - Template Engine: Jinja2 - Password
 Security: Werkzeug password hashing - Calling: HTML `tel:` links
 
@@ -139,7 +139,7 @@ Example document:
 {
     "name": "Shivam Patil",
     "email": "user@example.com",
-    "phone": "9876543210",
+    "phone": "98765432",
     "password": "hashed_password"
 }
 ```
@@ -153,7 +153,7 @@ Example document:
     "user_id": "user_object_id",
     "name": "Mother",
     "relationship": "Mother",
-    "phone": "9876543210"
+    "phone": "98765432"
 }
 ```
 
@@ -166,7 +166,7 @@ Example document:
     "user_id": "user_object_id",
     "name": "Dr. Sharma",
     "category": "Doctor",
-    "phone": "9876543210"
+    "phone": "98765432"
 }
 ```
 
@@ -411,7 +411,7 @@ database deployment - Progressive Web App support
 
 ## Author
 
-**Name:** Shivam Patil
+**Name:** Sanika Patil
 
 ## Project Purpose
 
@@ -421,7 +421,6 @@ use of:
 -   Python Flask
 -   HTML
 -   CSS
--   JavaScript
 -   MongoDB
 -   Jinja templates
 -   CRUD operations
