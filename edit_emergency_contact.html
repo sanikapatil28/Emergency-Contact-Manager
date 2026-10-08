@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Emergency Contact</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    {% include 'navbar.html' %}
+
+<div class="dashboard">
+
+    <header class="dashboard-header">
+
+        <div>
+            <h1>🚨 Emergency Contact Manager</h1>
+            <p>Edit Emergency Contact</p>
+        </div>
+
+        <a href="/emergency-contacts" class="logout-btn">
+            Back
+        </a>
+
+    </header>
+
+
+    <main class="dashboard-content">
+
+        <div class="contact-form-card edit-card">
+
+            <h2>✏️ Edit Emergency Contact</h2>
+
+            <p class="edit-description">
+                Update the contact information below.
+            </p>
+
+            <form method="POST">
+
+                <div class="form-group">
+
+                    <label>Contact Name</label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        value="{{ contact.name }}"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Category</label>
+
+                    <select name="category" required>
+
+                        <option value="Doctor"
+                            {% if contact.category == "Doctor" %}selected{% endif %}>
+                            👨‍⚕️ Doctor
+                        </option>
+
+                        <option value="Teacher"
+                            {% if contact.category == "Teacher" %}selected{% endif %}>
+                            👨‍🏫 Teacher
+                        </option>
+
+                        <option value="Hospital"
+                            {% if contact.category == "Hospital" %}selected{% endif %}>
+                            🏥 Hospital
+                        </option>
+
+                        <option value="Workplace"
+                            {% if contact.category == "Workplace" %}selected{% endif %}>
+                            🏢 Workplace
+                        </option>
+
+                        <option value="Friend"
+                            {% if contact.category == "Friend" %}selected{% endif %}>
+                            👤 Friend
+                        </option>
+
+                        <option value="Neighbour"
+                            {% if contact.category == "Neighbour" %}selected{% endif %}>
+                            🏠 Neighbour
+                        </option>
+
+                        <option value="Other"
+                            {% if contact.category == "Other" %}selected{% endif %}>
+                            📌 Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Phone Number</label>
+
+                    <input
+                        type="tel"
+                        name="phone"
+                        value="{{ contact.phone }}"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit" class="btn-primary">
+                    💾 Update Contact
+                </button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

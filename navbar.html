@@ -1,0 +1,41 @@
+<nav class="navbar">
+
+    <div class="nav-container">
+
+        <!-- Logo -->
+        <a href="{{ url_for('dashboard') }}" class="nav-logo">
+            🚨 Emergency Manager
+        </a>
+
+        <!-- Navigation Links -->
+        <div class="nav-links">
+
+            <a href="{{ url_for('dashboard') }}">
+                🏠 Dashboard
+            </a>
+
+            <a href="{{ url_for('family_contacts') }}">
+                👨‍👩‍👧 Family
+            </a>
+
+            <a href="{{ url_for('emergency_contacts') }}">
+                📱 Contacts
+            </a>
+
+            <a href="{{ url_for('emergency_numbers') }}">
+                🚨 Emergency
+            </a>
+
+            <a href="{{ url_for('profile') }}">
+                👤 Profile
+            </a>
+
+            <a href="{{ url_for('logout') }}" class="nav-logout">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>

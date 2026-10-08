@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Emergency Contacts</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    {% include 'navbar.html' %}
+
+    <div class="dashboard-content">
+
+        <!-- Page Heading -->
+
+        <section class="page-heading">
+
+            <h2>📞 Emergency Contacts</h2>
+
+            <p>
+                Save important people you may need during an emergency.
+            </p>
+
+        </section>
+
+
+        <!-- Add Emergency Contact -->
+
+        <div class="contact-form-card">
+
+            <h3>➕ Add Emergency Contact</h3>
+
+            <form action="/emergency-contacts" method="POST">
+
+                <div class="form-group">
+
+                    <label>Contact Name</label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Enter contact name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Category</label>
+
+                    <select name="category" required>
+
+                        <option value="">
+                            Select category
+                        </option>
+
+                        <option value="Doctor">
+                            👨‍⚕️ Doctor
+                        </option>
+
+                        <option value="Teacher">
+                            👨‍🏫 Teacher
+                        </option>
+
+                        <option value="Hospital">
+                            🏥 Hospital
+                        </option>
+
+                        <option value="Workplace">
+                            🏢 Workplace
+                        </option>
+
+                        <option value="Friend">
+                            👤 Friend
+                        </option>
+
+                        <option value="Neighbour">
+                            🏠 Neighbour
+                        </option>
+
+                        <option value="Other">
+                            📌 Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Phone Number</label>
+
+                    <input
+                        type="tel"
+                        name="phone"
+                        placeholder="Enter phone number"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit" class="btn-primary">
+                    Save Emergency Contact
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- Search -->
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="emergencySearch"
+                placeholder="🔎 Search emergency contact..."
+                onkeyup="searchEmergencyContacts()"
+            >
+
+        </div>
+
+
+        <!-- Saved Contacts -->
+
+        <div class="saved-contacts">
+
+            <h3>My Emergency Contacts</h3>
+
+
+            {% if contacts %}
+
+            <div class="contacts-grid">
+
+                {% for contact in contacts %}
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">
+                        🚨
+                    </div>
+
+
+                    <div class="contact-info">
+
+                        <h3>
+                            {{ contact.name }}
+                        </h3>
+
+                        <p>
+                            {{ contact.category }}
+                        </p>
+
+                        <span>
+                            {{ contact.phone }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="contact-actions">
+
+                        <a
+                            href="tel:{{ contact.phone }}"
+                            class="call-btn"
+                        >
+                            📞 Call
+                        </a>
+
+
+                        <a
+                            href="/edit-emergency-contact/{{ contact._id }}"
+                            class="edit-btn"
+                        >
+                            ✏️ Edit
+                        </a>
+
+
+                        <a
+                            href="/delete-emergency-contact/{{ contact._id }}"
+                            class="delete-btn"
+                            onclick="return confirm('Delete this contact?')"
+                        >
+                            🗑 Delete
+                        </a>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            {% else %}
+
+            <div class="empty-state">
+
+                <div>📞</div>
+
+                <h3>No emergency contacts yet</h3>
+
+                <p>
+                    Add an important contact above.
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- Search JavaScript -->
+
+    <script>
+
+        function searchEmergencyContacts() {
+
+            let search = document
+                .getElementById("emergencySearch")
+                .value
+                .toLowerCase();
+
+            let contacts =
+                document.querySelectorAll(".contact-card");
+
+            contacts.forEach(function(contact) {
+
+                let text =
+                    contact.innerText.toLowerCase();
+
+                if (text.includes(search)) {
+
+                    contact.style.display = "";
+
+                } else {
+
+                    contact.style.display = "none";
+
+                }
+
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>

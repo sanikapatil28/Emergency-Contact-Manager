@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Family Contacts - Emergency Contact Manager</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    {% include 'navbar.html' %}
+
+<div class="dashboard-content">
+
+        <div class="page-heading">
+
+            <h2>👨‍👩‍👧‍👦 Family Contacts</h2>
+
+            <p>
+                Add important family members for quick emergency calling.
+            </p>
+
+        </div>
+
+
+        <!-- Add Contact -->
+
+        <div class="contact-form-card">
+
+            <h3>➕ Add Family Contact</h3>
+
+            <form action="/family-contacts" method="POST">
+
+                <div class="form-group">
+
+                    <label>Name</label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Enter family member name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Relationship</label>
+
+                    <select name="relationship" required>
+
+                        <option value="">Select relationship</option>
+
+                        <option value="Father">Father</option>
+
+                        <option value="Mother">Mother</option>
+
+                        <option value="Brother">Brother</option>
+
+                        <option value="Sister">Sister</option>
+
+                        <option value="Grandfather">Grandfather</option>
+
+                        <option value="Grandmother">Grandmother</option>
+
+                        <option value="Uncle">Uncle</option>
+
+                        <option value="Aunt">Aunt</option>
+
+                        <option value="Other">Other</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Phone Number</label>
+
+                    <input
+                        type="tel"
+                        name="phone"
+                        placeholder="Enter phone number"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit" class="btn-primary">
+                    Save Contact
+                </button>
+
+            </form>
+
+        </div>
+<!-- Search Family Contacts -->
+<div class="search-box">
+    <input
+        type="text"
+        id="familySearch"
+        placeholder="🔎 Search family contact..."
+        onkeyup="searchFamilyContacts()"
+    >
+</div>
+
+        <!-- Saved Contacts -->
+
+        <div class="saved-contacts">
+
+            <h3>Saved Family Contacts</h3>
+
+
+            {% if contacts %}
+
+                <div class="contacts-grid" id="familyContacts">
+
+                    {% for contact in contacts %}
+
+                    <div class="contact-card">
+
+                        <div class="contact-icon">
+                            👤
+                        </div>
+
+                        <div class="contact-info">
+
+                            <h3>{{ contact.name }}</h3>
+
+                            <p>{{ contact.relationship }}</p>
+
+                            <span>{{ contact.phone }}</span>
+
+                        </div>
+
+
+                        <div class="contact-actions">
+
+    <a
+        href="tel:{{ contact.phone }}"
+        class="call-btn"
+    >
+        📞 Call
+    </a>
+
+    <a
+        href="/edit-family-contact/{{ contact._id }}"
+        class="edit-btn"
+    >
+        ✏️ Edit
+    </a>
+
+    <a
+        href="/delete-family-contact/{{ contact._id }}"
+        class="delete-btn"
+        onclick="return confirm('Delete this contact?')"
+    >
+        🗑 Delete
+    </a>
+
+</div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="empty-state">
+
+                    <div>📱</div>
+
+                    <h3>No family contacts yet</h3>
+
+                    <p>
+                        Add your important family members above.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

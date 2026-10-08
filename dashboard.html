@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - Emergency Contact Manager</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    {% include 'navbar.html' %}
+
+<div class="dashboard">
+
+    <main class="dashboard-content">
+
+        <!-- Welcome -->
+        <section class="welcome">
+            <h2>Welcome, {{ name }} 👋</h2>
+            <p>Stay prepared. Your important contacts are just one tap away.</p>
+        </section>
+
+
+        <!-- Emergency Numbers -->
+        <section class="emergency-box">
+
+            <div>
+                <h2>🚨 Emergency Numbers</h2>
+                <p>For immediate emergencies, call the appropriate service.</p>
+            </div>
+
+            <div class="service-buttons">
+
+                <a href="tel:112" class="quick-emergency-btn">
+                    🆘 112
+                </a>
+
+                <a href="tel:108" class="quick-emergency-btn">
+                    🚑 108
+                </a>
+
+                <a href="tel:101" class="quick-emergency-btn">
+                    🚒 101
+                </a>
+
+                <a href="tel:100" class="quick-emergency-btn">
+                    👮 100
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- Dashboard Cards -->
+        <section class="dashboard-grid">
+
+            <a href="{{ url_for('family_contacts') }}"
+               class="dashboard-card">
+
+                <div class="card-icon">👨‍👩‍👧</div>
+
+                <h3>Family Contacts</h3>
+
+                <p>
+                    Manage your family emergency numbers.
+                </p>
+
+            </a>
+
+
+            <a href="{{ url_for('emergency_contacts') }}"
+               class="dashboard-card">
+
+                <div class="card-icon">📱</div>
+
+                <h3>Emergency Contacts</h3>
+
+                <p>
+                    Manage doctors, friends, teachers and others.
+                </p>
+
+            </a>
+
+
+            <a href="{{ url_for('emergency_numbers') }}"
+               class="dashboard-card">
+
+                <div class="card-icon">🚨</div>
+
+                <h3>Emergency Services</h3>
+
+                <p>
+                    Quickly access important emergency services.
+                </p>
+
+            </a>
+
+
+            <a href="{{ url_for('profile') }}"
+               class="dashboard-card">
+
+                <div class="card-icon">👤</div>
+
+                <h3>My Profile</h3>
+
+                <p>
+                    View your account information.
+                </p>
+
+            </a>
+
+        </section>
+
+
+        <!-- Family Contacts -->
+        <section class="quick-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>👨‍👩‍👧 Family Contacts</h2>
+                    <p>Your most important contacts</p>
+                </div>
+
+                <a href="{{ url_for('family_contacts') }}"
+                   class="view-all-btn">
+                    View All →
+                </a>
+            </div>
+
+
+            {% if family_contacts %}
+
+            <div class="quick-contacts">
+
+                {% for contact in family_contacts %}
+
+                <div class="quick-contact-card">
+
+                    <div class="quick-contact-icon">
+                        👤
+                    </div>
+
+                    <div class="quick-contact-info">
+
+                        <h3>{{ contact.name }}</h3>
+
+                        <p>{{ contact.relationship }}</p>
+
+                        <span>{{ contact.phone }}</span>
+
+                    </div>
+
+                    <a href="tel:{{ contact.phone }}"
+                       class="quick-call-btn">
+                        📞 Call
+                    </a>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <div class="empty-dashboard">
+
+                <p>
+                    You haven't added any family contacts yet.
+                </p>
+
+                <a href="{{ url_for('family_contacts') }}"
+                   class="btn-primary">
+                    + Add Family Contact
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- Emergency Contacts -->
+        <section class="quick-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>📱 Emergency Contacts</h2>
+                    <p>Your saved emergency contacts</p>
+                </div>
+
+                <a href="{{ url_for('emergency_contacts') }}"
+                   class="view-all-btn">
+                    View All →
+                </a>
+
+            </div>
+
+
+            {% if emergency_contacts %}
+
+            <div class="quick-contacts">
+
+                {% for contact in emergency_contacts %}
+
+                <div class="quick-contact-card">
+
+                    <div class="quick-contact-icon">
+                        🚨
+                    </div>
+
+                    <div class="quick-contact-info">
+
+                        <h3>{{ contact.name }}</h3>
+
+                        <p>{{ contact.category }}</p>
+
+                        <span>{{ contact.phone }}</span>
+
+                    </div>
+
+                    <a href="tel:{{ contact.phone }}"
+                       class="quick-call-btn">
+                        📞 Call
+                    </a>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <div class="empty-dashboard">
+
+                <p>
+                    You haven't added any emergency contacts yet.
+                </p>
+
+                <a href="{{ url_for('emergency_contacts') }}"
+                   class="btn-primary">
+                    + Add Emergency Contact
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

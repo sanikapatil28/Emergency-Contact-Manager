@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Emergency Numbers</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    {% include 'navbar.html' %}
+
+    <div class="dashboard-content">
+
+        <!-- Page Heading -->
+
+        <section class="page-heading">
+
+            <h2>🚨 Emergency Numbers</h2>
+
+            <p>
+                Quickly contact emergency services when you need help.
+            </p>
+
+        </section>
+
+
+        <!-- Emergency Warning -->
+
+        <div class="emergency-warning">
+
+            <div class="warning-icon">
+                ⚠️
+            </div>
+
+            <div>
+
+                <h3>
+                    Emergency?
+                </h3>
+
+                <p>
+                    Select the appropriate service below to make a call.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Emergency Services -->
+
+        <div class="services-grid">
+
+            {% for service in services %}
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    {{ service.icon }}
+                </div>
+
+
+                <div class="service-info">
+
+                    <h3>
+                        {{ service.name }}
+                    </h3>
+
+                    <div class="service-number">
+                        {{ service.number }}
+                    </div>
+
+                    <p>
+                        {{ service.description }}
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="tel:{{ service.number }}"
+                    class="service-call-btn"
+                >
+                    📞 Call Now
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- Back to Dashboard -->
+
+        <div class="back-section">
+
+            <a
+                href="{{ url_for('dashboard') }}"
+                class="back-btn"
+            >
+                ← Back to Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

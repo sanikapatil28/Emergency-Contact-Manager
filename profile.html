@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile - Emergency Contact Manager</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    {% include 'navbar.html' %}
+
+<div class="dashboard-content">
+
+        <div class="page-heading">
+
+            <h2>👤 My Profile</h2>
+
+            <p>
+                View your account information.
+            </p>
+
+        </div>
+
+
+        <!-- Profile Card -->
+
+        <div class="profile-card">
+
+            <div class="profile-avatar">
+                👤
+            </div>
+
+            <h2>{{ user.name }}</h2>
+
+            <p class="profile-email">
+                {{ user.email }}
+            </p>
+
+
+            <div class="profile-details">
+
+                <div class="profile-detail">
+
+                    <span class="detail-icon">👤</span>
+
+                    <div>
+                        <small>Full Name</small>
+                        <strong>{{ user.name }}</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="profile-detail">
+
+                    <span class="detail-icon">📧</span>
+
+                    <div>
+                        <small>Email</small>
+                        <strong>{{ user.email }}</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="profile-detail">
+
+                    <span class="detail-icon">📱</span>
+
+                    <div>
+                        <small>Phone Number</small>
+                        <strong>{{ user.phone }}</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-actions">
+
+                <a href="/logout" class="profile-logout">
+                    🚪 Logout
+                </a>
+
+                <a href="/dashboard" class="profile-back">
+                    ← Dashboard
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>
